@@ -124,7 +124,7 @@ then
 fi
 
 # Move files into the deployment folder
-rsync -a ../build/* ./wp-content/${PROJECT_TYPE}s/${REPO_NAME}
+rsync -a ../clone/* ./wp-content/${PROJECT_TYPE}s/${REPO_NAME}
 
 # Stage, commit, and push to wpengine repo
 git remote add production git@git.wpengine.com:production/${target_wpe_install}.git
