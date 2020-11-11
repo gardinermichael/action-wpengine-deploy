@@ -47,32 +47,32 @@ echo -e  "Install: ${WPE_INSTALL}"
 
 # Begin from the clone directory
 # this directory is the default your git project is checked out into by Codeship.
-cd build
+# cd build
 
-# Get official list of files/folders that are not meant to be on production if $EXCLUDE_LIST is not set.
-if [[ -z "${EXCLUDE_LIST}" ]]; then
-    wget https://raw.githubusercontent.com/linchpin/wpengine-codeship-continuous-deployment/master/exclude-list.txt
-else
-    # @todo validate proper url?
-    wget ${EXCLUDE_LIST}
-fi
+# # Get official list of files/folders that are not meant to be on production if $EXCLUDE_LIST is not set.
+# if [[ -z "${EXCLUDE_LIST}" ]]; then
+#     wget https://raw.githubusercontent.com/linchpin/wpengine-codeship-continuous-deployment/master/exclude-list.txt
+# else
+#     # @todo validate proper url?
+#     wget ${EXCLUDE_LIST}
+# fi
 
-# Loop over list of files/folders and remove them from deployment
-ITEMS=`cat exclude-list.txt`
-for ITEM in $ITEMS; do
-    if [[ "$ITEM" == *.* ]]
-    then
-        find . -depth -name "$ITEM" -type f -exec rm "{}" \;
-    else
-        find . -depth -name "$ITEM" -type d -exec rm -rf "{}" \;
-    fi
-done
+# # Loop over list of files/folders and remove them from deployment
+# ITEMS=`cat exclude-list.txt`
+# for ITEM in $ITEMS; do
+#     if [[ "$ITEM" == *.* ]]
+#     then
+#         find . -depth -name "$ITEM" -type f -exec rm "{}" \;
+#     else
+#         find . -depth -name "$ITEM" -type d -exec rm -rf "{}" \;
+#     fi
+# done
 
-# Remove exclude-list file
-rm exclude-list.txt
+# # Remove exclude-list file
+# rm exclude-list.txt
 
-# go back home
-cd ..
+# # go back home
+# cd ..
 
 # Clone the WP Engine files to the deployment directory
 # if we are not force pushing our changes
